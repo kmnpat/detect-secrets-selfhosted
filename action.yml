@@ -1,5 +1,5 @@
-name: 'Secret Scanner'
-author: 'GarnerCorp'
+name: 'Detect Secret Scanner'
+author: 'Kmnpat'
 description: 'Scan for secrets in a repository'
 branding:
   icon: 'eye'
