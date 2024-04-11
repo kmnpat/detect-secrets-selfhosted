@@ -13,7 +13,7 @@ Uses [`Yelp/detect-secrets`](https://github.com/Yelp/detect-secrets) to look for
 First, create a `.secrets.baseline` in the repo you want to add this action to. For more details on what this file represents, visit [the README for Yelp/detect-secrets](https://github.com/Yelp/detect-secrets#detect-secrets):
 ```
 cd PATH_TO_REPOSITORY
-pip install detect-secrets[gibberish]==1.2.0
+pip install detect-secrets[gibberish]==1.4.0
 detect-secrets scan > .secrets.baseline
 detect-secrets audit .secrets.baseline
 ```
@@ -30,8 +30,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
-      - name: Secret Scanner
-        uses: secret-scanner/action@0.0.2
+      - name: Detect Secret Scanner
+        uses: kmnpat/detect-secrets-selfhosted@1.4.0
 ```
 
 ### Ignoring false positives
@@ -91,7 +91,7 @@ jobs:
       - name: Checkout Configuration
         uses: actions/checkout@v3
       - name: Secret Scanner
-        uses: secret-scanner/action@0.0.2
+        uses: kmnpat/detect-secrets-selfhosted@1.4.0
         with:
           detect_secret_additional_args: ${{ env.SCANNER_ARGS }}
 ```
@@ -104,5 +104,4 @@ This will ignore everything in `.github/actions/spelling/*`, and any line that m
 |detect_secrets_version|The version of Yelp/detect-secrets to use|no|1.2.0|
 |detect_secret_additional_args|Extra arguments to pass to the `detect-secret` binary when it is looking for secrets|no|No additional arguments (empty string)|
 |baseline_file|A path to the baseline secrets file|no|.secrets.baseline|
-|python_version|The version of python to use|no|3.10.4|
 |exclude_files_path|A path to the files containing things to exclude|no|.github/actions/secret-scanner|
