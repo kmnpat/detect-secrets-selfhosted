@@ -28,10 +28,9 @@ scan_new_secrets() {
     excluded_lines=$(fetch_flags_from_file '--exclude-lines' "$EXCLUDE_LINES_PATH" 2>/dev/null)
     detect_secret_args="$excluded_files $excluded_secrets $excluded_lines $DETECT_SECRET_ADDITIONAL_ARGS"
     echo "Running detect-secrets with args: $detect_secret_args"
-
     detect-secrets scan $detect_secret_args --baseline "$BASELINE_FILE"
     detect-secrets audit "$BASELINE_FILE" --report --json > "$all_secrets_file"
-    jq 'map(select(.category == "UNVERIFIED"))' "$all_secrets_file" > "$new_secrets_file"
+    jq '.results | map(select(.category == "UNVERIFIED"))' "$all_secrets_file" > "$new_secrets_file"
 }
 
 advice_if_none_are_secret_short() {
