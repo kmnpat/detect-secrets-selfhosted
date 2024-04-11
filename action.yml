@@ -2,8 +2,8 @@ name: 'Detect Secret Scanner'
 author: 'Kmnpat'
 description: 'Scan for secrets in a repository'
 branding:
-  icon: 'eye'
-  color: 'orange'
+  icon: 'file-text'
+  color: 'green'
 
 inputs:
   detect_secrets_version:
